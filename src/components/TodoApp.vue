@@ -1,58 +1,31 @@
 <template>
   <div class="app">
-    <div class="app__title">
-      Tasks
-    </div>
+    <div class="app__title">Tasks</div>
 
     <div class="app__form">
-      <AddTaskForm
-        :create-new-task="createNewTask"
-      />
+      <AddTaskForm :create-new-task="createNewTask"/>
     </div>
 
     <div class="app__tasks">
-      <CardBox
-        title="TODO"
-      >
-        <transition-group
-          tag="div"
-          name="fade"
-        >
-          <TaskCard
-            v-for="(task, index) in todoTasks"
-            :key="index"
-            :task="task"
-          />
+      <CardBox title="TODO">
+        <transition-group tag="div" name="fade">
+          <TaskCard v-for="(task, index) in todoTasks" :key="`${index}-${task.text}`" :task="task"/>
         </transition-group>
       </CardBox>
 
-      <CardBox
-        title="DOING"
-      >
-        <transition-group
-          tag="div"
-          name="fade"
-        >
+      <CardBox title="DOING">
+        <transition-group tag="div" name="fade">
           <TaskCard
             v-for="(task, index) in doingTasks"
-            :key="index"
+            :key="`${index}-${task.text}`"
             :task="task"
           />
         </transition-group>
       </CardBox>
 
-      <CardBox
-        title="DONE"
-      >
-        <transition-group
-          tag="div"
-          name="fade"
-        >
-          <TaskCard
-            v-for="(task, index) in doneTasks"
-            :key="index"
-            :task="task"
-          />
+      <CardBox title="DONE">
+        <transition-group tag="div" name="fade">
+          <TaskCard v-for="(task, index) in doneTasks" :key="`${index}-${task.text}`" :task="task"/>
         </transition-group>
       </CardBox>
     </div>
